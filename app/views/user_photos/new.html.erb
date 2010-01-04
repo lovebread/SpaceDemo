@@ -1,0 +1,18 @@
+<h2>Upload photo</h2>
+
+<%= error_messages_for :photo %>
+
+<% form_for(:photo, 
+            :url => {:controller => 'user_photos',
+					 :action =>'create',
+					 :user_id => @logged_in_user}, 
+            :html => { :multipart => true }) do |f| %>
+  <p>Select photo</p>
+  <p>Title:<br /><%= f.text_field 'title' %></p>
+  <p>Description:<br /><%= f.text_area 'body', :rows => 6, :cols => 40 %></p>
+  <p>Photo:<br /><%= f.file_field 'uploaded_data' %></p>
+  <p>
+    <%= submit_tag 'Upload Photo' %> or 
+    <%= link_to 'cancel', user_photos_path(@logged_in_user) %>
+  </p>
+<% end %>

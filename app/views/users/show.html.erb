@@ -1,0 +1,34 @@
+<h2>
+  Username:<%=h @user.username %>
+</h2>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+<p>
+  <b>Create on:</b>
+  <%=h @user.created_at.to_s(:long) %>
+</p>
+<p>
+  <b>Profile:</b>
+  <%=h @user.profile %>
+</p>
+
+<h3>
+	Photos
+</h3>
+<ul id="photos">
+  <%= render :partial => 'photos/photo', :collection => @photos %>
+</ul>
+<p>
+  <%= link_to "See all of #{@user.username}'s photos", 
+              user_photos_path(:user_id => @user) %>
+</p>
+<p>
+  <%= link_to "#{@user.username}'s Tags",
+        user_tags_path(:user_id => @user) %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

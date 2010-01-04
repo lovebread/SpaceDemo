@@ -1,0 +1,16 @@
+<h2>All Photos</h2>
+
+<% if is_logged_in? && logged_in_user == @user %>
+  <p><%= link_to 'Upload a new photo', {:controller => 'user_photos',
+					 					:action =>'new',
+					 					:user_id => @logged_in_user} %>
+  </p>
+<% end %>
+
+<%= render :partial => 'page_links' %>
+
+<ul id="photos">
+  <%= render :partial => 'photo', :collection => @photos %>
+</ul>
+
+<%= render :partial => 'page_links' %>

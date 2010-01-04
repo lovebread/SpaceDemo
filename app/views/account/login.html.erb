@@ -1,0 +1,12 @@
+<h2>Login</h2>
+<% form_for :user, :url => {:action => 'check'} do |f| -%>
+  <p>
+  	Username:<br />
+	<%= f.text_field :username%>
+  </p>
+  <p>
+  	Password:<br />
+	<%= f.password_field :password%>
+  </p>
+  <%= submit_tag 'Login' %>
+<% end %>

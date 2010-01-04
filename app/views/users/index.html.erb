@@ -1,0 +1,31 @@
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Enabled?</th>
+    <th>Roles</th>
+  </tr>
+
+  <% @users.each do |user| %>
+  <tr class="<%= cycle('odd', 'even') -%>">
+      <td><%= user.username -%></td>
+	  <td><%= user.email -%></td>
+	  <td><%= user.enabled ? 'yes':'no' -%>
+	  <% unless user == logged_in_user -%>	
+	    <% if user.enabled -%>
+	      [<%= link_to('disable', user_url(user.id), :method => :delete) %>]
+	    <% else -%>
+	      [<%= link_to('enable', enable_user_url(user.id), :method => :put) %>]
+	    <% end -%>
+	  <% end -%>
+	  </td>
+	  <td>[<%= link_to 'edit permissions', {:controller => "roles", :action => "index", :user_id=>user.id} %>]</td>
+  </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_to 'New user', new_user_path %>
